@@ -1,4 +1,6 @@
-﻿.height-matched-button {
+﻿/*Container Styles*/
+
+.height-matched-button {
     padding: 0;
     display: flex;
     align-items: center;
@@ -9,4 +11,10 @@
 .height-matched-button .mud-button-label {
     width: 100%;
     text-align: center;
+}
+
+/*Button Styles*/
+
+.no-shadow {
+    box-shadow: none !important;
 }

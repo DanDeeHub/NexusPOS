@@ -10,9 +10,6 @@
             <MudButton Variant="Variant.Text" Color="Color.Inherit">Iced Coffee</MudButton>
             <MudButton Variant="Variant.Text" Color="Color.Inherit">Hot Coffee</MudButton>
             <MudSpacer/>
-            <MudTooltip Text="Add New Category" Placement="Placement.Left" Arrow="true">
-                <MudIconButton Icon="@Icons.Material.Filled.Add" Color="Color.Inherit"/>
-            </MudTooltip>
         </MudPaper>
         <MudPaper Class="d-flex flex-column gap-4 px-4" Height="100%" Width="100%" Square="true" Elevation="0">
             <MudGrid>
@@ -33,15 +30,115 @@
                 <MudItem xs="12" sm="6" md="3">
                     <MudButton Variant="Variant.Outlined" Class="height-matched-button hw-100" Color="Color.Info">Chocolate</MudButton>
                 </MudItem>
+                <MudItem xs="12" sm="6" md="3">
+                    <MudButton Variant="Variant.Outlined" Class="height-matched-button hw-100" Color="Color.Error">Chocolate Blended</MudButton>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="3">
+                    <MudButton Variant="Variant.Outlined" Class="height-matched-button hw-100" Color="Color.Warning">Vanilla Milk Shake</MudButton>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="3">
+                    <MudButton Variant="Variant.Outlined" Class="height-matched-button hw-100" Color="Color.Success">Oreo Blended</MudButton>
+                </MudItem>
+            </MudGrid>
+            <MudGrid>
+                <MudItem xs="12" sm="6" md="3">
+                    <MudButton Variant="Variant.Outlined" Class="height-matched-button hw-100" Color="Color.Default">Four Season</MudButton>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="3">
+                    <MudButton Variant="Variant.Outlined" Class="height-matched-button hw-100" Color="Color.Primary">Lemonade</MudButton>
+                </MudItem>
             </MudGrid>
         </MudPaper>
     </MudItem>
     <MudItem xs="4">
-        <MudPaper Height="100%" Width="100%" Square="true" Elevation="0">
-            
+        <MudPaper Class="d-flex align-center justify-end mud-width-full px-4 py-2 gap-4" Square="true" Elevation="0">
+            <MudTextField @bind-Value="TextValue" Label="Customer Name" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+            <MudSpacer/>
+            <MudTooltip Text="Clear Order" Placement="Placement.Left" Arrow="true">
+                <MudIconButton Icon="@Icons.Material.Filled.Refresh" Edge="Edge.End"/>
+            </MudTooltip>
         </MudPaper>
-    </MudItem>
+    <!-- Ordered Items List -->
+    <MudPaper Class="pa-4" Elevation="0">
+        <!-- Doughy's Glazed Item -->
+        <MudGrid Class="mb-3" AlignItems="AlignItems.Center">
+            <MudItem xs="8">
+                <MudText Typo="Typo.subtitle1">Doughy's Glazed</MudText>
+                <MudText Typo="Typo.caption">Classic glazed donut</MudText>
+            </MudItem>
+            <MudItem xs="4" Class="d-flex justify-end align-center">
+                <MudIconButton Icon="@Icons.Material.Filled.Remove" Size="Size.Small" Variant="Variant.Outlined"/>
+                <MudText Class="mx-3">2</MudText>
+                <MudIconButton Icon="@Icons.Material.Filled.Add" Size="Size.Small" Variant="Variant.Outlined"/>
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Size="Size.Small" Class="ml-2"/>
+            </MudItem>
+            <MudItem xs="12" Class="text-right mt-1">
+                <MudText Typo="Typo.body2">₱70.00</MudText>
+            </MudItem>
+        </MudGrid>
+        
+        <!-- Oreo Blended Item -->
+        <MudGrid Class="mb-3" AlignItems="AlignItems.Center">
+            <MudItem xs="8">
+                <MudText Typo="Typo.subtitle1">Oreo Blended</MudText>
+                <MudText Typo="Typo.caption">Creamy Oreo milkshake</MudText>
+            </MudItem>
+            <MudItem xs="4" Class="d-flex justify-end align-center">
+                <MudIconButton Icon="@Icons.Material.Filled.Remove" Size="Size.Small" Variant="Variant.Outlined"/>
+                <MudText Class="mx-3">2</MudText>
+                <MudIconButton Icon="@Icons.Material.Filled.Add" Size="Size.Small" Variant="Variant.Outlined"/>
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Size="Size.Small" Class="ml-2"/>
+            </MudItem>
+            <MudItem xs="12" Class="text-right mt-1">
+                <MudText Typo="Typo.body2">₱198.00</MudText>
+            </MudItem>
+        </MudGrid>
+        
+        <MudDivider Class="my-2"/>
+    </MudPaper>
+    
+    <!-- Order Summary -->
+    <MudPaper Class="pa-4" Elevation="0">
+        <!-- Subtotal -->
+        <MudGrid Class="mb-2">
+            <MudItem xs="6"><MudText Typo="Typo.subtitle2">Subtotal:</MudText></MudItem>
+            <MudItem xs="6" Class="text-right"><MudText Typo="Typo.subtitle2">₱268.00</MudText></MudItem>
+        </MudGrid>
+        
+        <!-- Discount -->
+        <MudGrid Class="mb-2">
+            <MudItem xs="6"><MudText Typo="Typo.subtitle2">Discount:</MudText></MudItem>
+            <MudItem xs="6" Class="text-right"><MudText Typo="Typo.subtitle2">₱0.00</MudText></MudItem>
+        </MudGrid>
+        
+        <!-- Tax -->
+        @* <MudGrid Class="mb-2"> *@
+        @*     <MudItem xs="6"><MudText Typo="Typo.subtitle2">Tax (10%):</MudText></MudItem> *@
+        @*     <MudItem xs="6" Class="text-right"><MudText Typo="Typo.subtitle2">₱0.88</MudText></MudItem> *@
+        @* </MudGrid> *@
+        
+        <MudDivider Class="my-3"/>
+        
+        <!-- Total -->
+        <MudGrid Class="mb-4">
+            <MudItem xs="6"><MudText Typo="Typo.h6">Total:</MudText></MudItem>
+            <MudItem xs="6" Class="text-right"><MudText Typo="Typo.h6">₱268.00</MudText></MudItem>
+        </MudGrid>
+        
+        <!-- Discount Button -->
+        <MudButton Variant="Variant.Outlined" Color="Color.Warning" FullWidth="true" Class="mb-3">
+            <MudText>Apply Discount</MudText>
+        </MudButton>
+        
+        <!-- Payment Button -->
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" Class="mb-2">
+            <MudText>Process Payment</MudText>
+        </MudButton>
+    </MudPaper>
+</MudItem>
 </MudGrid>
 
 @code {
+    public string TextValue { get; set; }
+
 }

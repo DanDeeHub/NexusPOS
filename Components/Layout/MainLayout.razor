@@ -8,7 +8,9 @@
     <MudAppBar Elevation="0">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudText Typo="Typo.h5" Class="ml-3" Color="Color.Primary">NexusPOS</MudText>
-        <MudSpacer />
+        <MudSpacer/>
+        <MudTextField @bind-Value="Search" Label="Search Product" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" Clearable="true" Class="py-0" Margin="Margin.Dense" InputStyle="height: 36px;"/>
+        <MudSpacer/>
         <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
         <MudIconButton Icon="@Icons.Material.Filled.AccountCircle" Color="Color.Inherit" Edge="Edge.End" />
     </MudAppBar>
@@ -28,6 +30,7 @@
 </div>
 
 @code {
+    public string Search { get; set;}
     private bool _drawerOpen = true;
     private bool _isDarkMode = true;
     private MudTheme? _theme = null;
