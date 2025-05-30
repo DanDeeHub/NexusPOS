@@ -1,1 +1,12 @@
-﻿
+﻿.height-matched-button {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: none;
+    font-size: 1rem;
+}
+.height-matched-button .mud-button-label {
+    width: 100%;
+    text-align: center;
+}
