@@ -1,9 +1,30 @@
-﻿<MudNavMenu Class="d-flex flex-column" Style="height: 100%;">
+﻿@inject NavigationManager NavigationManager
+
+<MudNavMenu Class="d-flex flex-column" Style="height: 100%;">
     <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
     <MudNavLink Href="sales" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.ShowChart">Sales</MudNavLink>
     <MudNavLink Href="products" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.ShoppingBag">Products</MudNavLink>
     <MudNavLink Href="reports" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.BarChart">Reports</MudNavLink>
 
     <div class="mt-auto"></div>
-    <MudNavLink Href="login" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Logout">Logout</MudNavLink>
+    <MudNavLink OnClick="OnButtonClicked" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Logout">Logout</MudNavLink>
 </MudNavMenu>
+
+@code {
+
+    [Inject] private IDialogService DialogService { get; set; }
+    
+    private async Task OnButtonClicked()
+    {
+        bool? result = await DialogService.ShowMessageBox(
+        ":(", 
+        "Are you sure you want to log out?", 
+        yesText: "Yes!", 
+        cancelText: "No");
+
+        if (result == true)
+        {
+            NavigationManager.NavigateTo("/login");
+        }
+    }
+}
