@@ -1,4 +1,6 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager Navigation
+
 
 <MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode" />
 <MudPopoverProvider />
@@ -9,7 +11,10 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudText Typo="Typo.h5" Class="ml-3" Color="Color.Primary">NexusPOS</MudText>
         <MudSpacer/>
-        <MudTextField @bind-Value="Search" Label="Search Product" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" Clearable="true" Class="py-0" Margin="Margin.Dense" InputStyle="height: 36px;"/>
+        @if (IsHomePage())
+        {
+            <MudTextField @bind-Value="Search"  Label="Search Product" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" Clearable="true" Class="py-0" Margin="Margin.Dense" InputStyle="height: 36px;"/>
+        }        
         <MudSpacer/>
         <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
         <MudIconButton Icon="@Icons.Material.Filled.AccountCircle" Color="Color.Inherit" Edge="Edge.End" />
@@ -30,11 +35,19 @@
 </div>
 
 @code {
-    public string Search { get; set;}
+    
     private bool _drawerOpen = true;
     private bool _isDarkMode = true;
     private MudTheme? _theme = null;
 
+    private string Search { get; set; }
+
+    private bool IsHomePage()
+    {
+        var uri = Navigation.Uri;
+        return uri.EndsWith("/") || uri.EndsWith("/index") || uri.EndsWith("/home");
+    }
+    
     protected override void OnInitialized()
     {
         base.OnInitialized();
