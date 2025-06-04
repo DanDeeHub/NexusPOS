@@ -84,7 +84,31 @@
         </MudPaper>
     </MudItem>
 </MudGrid>
+<MudGrid Class="pt-4">
+    <MudItem xs="8">
+        <MudPaper Class="d-flex mud-width-full px-4 py-4 gap-4" Square="true" Elevation="0">
+            <MudText Typo="Typo.h6"><strong>Transactions</strong></MudText>
+            <MudSpacer/>
+            <div class="justify-end">
+                <MudDateRangePicker Class="wd-240" @ref="_picker" @bind-DateRange="_dateRange" AutoClose="@_autoClose">
+                    <PickerActions>
+                        <MudButton Class="mr-auto align-self-start" OnClick="@(() => _picker.ClearAsync())">Clear</MudButton>
+                        <MudButton OnClick="@(() => _picker.CloseAsync(false))">Cancel</MudButton>
+                        <MudButton Color="Color.Primary" OnClick="@(() => _picker.CloseAsync())">OK</MudButton>
+                    </PickerActions>
+                </MudDateRangePicker>
+            </div>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="4">
+        <MudPaper Class="d-flex align-center justify-center mud-width-full py-8" Square="true" Elevation="0">xs=6</MudPaper>
+    </MudItem>
+</MudGrid>
 
 @code {
     
+    private MudDateRangePicker _picker;
+    private DateRange _dateRange = new DateRange(DateTime.Now.Date, DateTime.Now.AddDays(5).Date);
+    private bool _autoClose;
+
 }
